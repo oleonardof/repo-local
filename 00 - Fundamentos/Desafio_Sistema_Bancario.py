@@ -1,11 +1,23 @@
 from datetime import datetime
+from zoneinfo import ZoneInfo  # disponível no Python 3.9+
 
-# Constantes
+# =========================
+# Configurações do Sistema
+# =========================
 LIMITE_SAQUES = 3
 LIMITE_VALOR = 500
 SENHA = "1234"  # senha fixa de exemplo
 
-# Funções
+# Definindo fuso horário de Brasília
+FUSO = ZoneInfo("America/Sao_Paulo")
+
+def agora():
+    """Retorna a data/hora atual no fuso de Brasília"""
+    return datetime.now(FUSO)
+
+# =========================
+# Funções do Sistema
+# =========================
 def autenticar():
     tentativas = 3
     while tentativas > 0:
@@ -22,7 +34,7 @@ def autenticar():
 def depositar(valor, saldo, extrato):
     if valor > 0:
         saldo += valor
-        extrato += f"{datetime.now().strftime('%d/%m %H:%M')} - Depósito: R$ {valor:.2f}\n"
+        extrato += f"{agora().strftime('%d/%m %H:%M')} - Depósito: R$ {valor:.2f}\n"
         print("Depósito realizado com sucesso!")
     else:
         print("Valor inválido.")
@@ -37,7 +49,7 @@ def sacar(valor, saldo, extrato, numero_saques):
         print("Número máximo de saques atingido.")
     elif valor > 0:
         saldo -= valor
-        extrato += f"{datetime.now().strftime('%d/%m %H:%M')} - Saque: R$ {valor:.2f}\n"
+        extrato += f"{agora().strftime('%d/%m %H:%M')} - Saque: R$ {valor:.2f}\n"
         numero_saques += 1
         print("Saque realizado com sucesso!")
     else:
@@ -50,7 +62,9 @@ def mostrar_extrato(saldo, extrato):
     print(f"Saldo atual: R$ {saldo:.2f}")
     print("===============================")
 
-# Programa principal
+# =========================
+# Programa Principal
+# =========================
 if autenticar():  # só entra no sistema se passar pela senha
     saldo = 0
     extrato = ""
