@@ -19,4 +19,4 @@ print("Nome: {nome} Idade: {idade}".format(**dados))
 
 print(f"Nome: {nome} Idade: {idade}")
 print(f"Nome: {nome} Idade: {idade} Saldo: {saldo:.2f}")
-print(f"Nome: {nome} Idade: {idade} Saldo: {saldo:10.1f}")
+print(f"Nome: {nome} Idade: {idade} Saldo: {saldo:50.1f}")
