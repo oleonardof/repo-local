@@ -35,7 +35,7 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
         print("\n@@@ Operação falhou! Você não tem saldo suficiente. @@@")
 
     elif excedeu_limite:
-        print("\n@@@ Operação falhou! O valor do saque excede o limite. @@@")
+        print("\n@@@ Operação falhou! O valor do saque excede o limite de R$ 2.000,00. @@@")
 
     elif excedeu_saques:
         print("\n@@@ Operação falhou! Número máximo de saques excedido. @@@")
@@ -108,7 +108,7 @@ def main():
     AGENCIA = "0001"
 
     saldo = 0
-    limite = 500
+    limite = 2000
     extrato = ""
     numero_saques = 0
     usuarios = []
